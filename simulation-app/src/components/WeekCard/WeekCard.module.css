@@ -1,0 +1,44 @@
+/* src/components/WeekCard/WeekCard.module.css */
+
+.container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 220px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    flex: 1;
+  }
+  
+  .header {
+    background-color: #3c3c3c;
+    color: #fff;
+    padding: 8px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .matches {
+    padding: 8px;
+  }
+  
+  .matchRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .teamLeft {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .teamRight {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .hyphen {
+    margin: 0 8px;
+    flex-shrink: 0;
+  }
+  
