@@ -1,0 +1,33 @@
+/* src/components/TeamsTable/TeamsTable.module.css */
+
+.container {
+    text-align: center; /* Ortalamak için */
+    margin-bottom: 20px;
+    flex:2;
+  }
+  
+  .title {
+    background-color: #3c3c3c;
+    color: #fff;
+    padding: 8px;
+    margin: 0;
+    border-radius: 4px 4px 0 0;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    border: 1px solid #ccc;
+  }
+  th{
+    background-color:#3c3c3c;
+    color: white;
+  }
+
+  th, td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
