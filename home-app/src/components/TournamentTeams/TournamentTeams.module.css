@@ -1,0 +1,45 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .headerCell {
+    background-color: #3c3c3c;
+    color: #fff;
+    text-align: left;
+    padding: 12px;
+  }
+  
+  .row {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cell {
+    padding: 12px;
+  }
+  
+  .button {
+    padding: 10px 16px;
+    background-color: #16a1b9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  

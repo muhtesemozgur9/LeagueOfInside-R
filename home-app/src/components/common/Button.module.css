@@ -1,0 +1,21 @@
+/* src/components/common/Button.module.css */
+
+.button {
+    padding: 10px 16px;
+    background-color: #16a1b9; /* Örnek mavi ton */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .button:hover {
+    background-color: #0d616f; /* Hover için daha koyu mavi */
+  }
+  
+  .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
