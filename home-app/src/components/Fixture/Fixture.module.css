@@ -1,0 +1,96 @@
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .pageTitle {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .weeksContainer {
+    display: flex;
+    flex-wrap: wrap;  
+    gap: 20px;
+  }
+  
+  .weekBlock {
+    background-color: #fff;
+    width: 310px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cccbcb;
+  }
+  
+  .weekHeader {
+    background-color: #333a41;
+    color: #fff;
+    padding: 8px;
+    font-weight: bold;
+  }
+  
+  .matchesContainer {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 0 0 4px 4px;
+  }
+  
+  .matchRow {
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+  }
+  
+  .matchRow:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .fixture {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+  }
+  
+  .vs {
+    margin: 0 8px;
+  }
+  
+  /* Buton stili */
+  .startButton {
+    margin-top: 20px;
+    padding: 10px 16px;
+    background-color: #16a1b9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  .startButton:hover {
+    background-color: #0d616f;
+  }
+  
+  .teamLeft {
+    flex: 2;
+    text-align: left;
+  }
+  
+  .teamRight {
+    flex: 2;
+    text-align: left;
+  }
+  
+  .hyphen {
+    flex:1;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;;
+  }
