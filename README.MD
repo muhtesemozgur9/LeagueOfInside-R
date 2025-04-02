@@ -1,5 +1,5 @@
 League of Insider
-League of Insider is a state-of-the-art sports simulation platform built with a modern microfrontend and microservice architecture. The project is designed to deliver an interactive, real-time sports analytics experience by seamlessly integrating multiple React microfrontend applications with a robust Laravel backend service.
+League of Insider is a cutting-edge sports simulation platform built using a modern microfrontend and microservice architecture. The project integrates multiple React applications with a robust Laravel backend to deliver an interactive, real-time sports analytics experience.
 
 Table of Contents
 Overview
@@ -12,7 +12,7 @@ Installation & Setup
 
 Configuration
 
-Running the Project
+Usage
 
 API Endpoints
 
@@ -23,61 +23,39 @@ Database Initialization
 Development & Testing
 
 Overview
-League of Insider harnesses a microfrontend approach for the client-side with multiple independent React applications—such as home‑app and simulation‑app—working in tandem under a unified domain through a reverse proxy. The backend is powered by the Teams Service, a Laravel microservice that manages teams, fixture generation, match simulation, standings, and championship probability calculations. This decoupled architecture ensures high scalability, maintainability, and the ability to iterate rapidly on individual components of the system.
+League of Insider leverages a microfrontend approach for the client side, featuring independent React applications (e.g., home‑app and simulation‑app) that are served under a unified domain via a reverse proxy. The backend is powered by Teams Service, a Laravel microservice that handles team management, fixture generation, match simulation, standings updates, and championship probability calculations. This decoupled architecture ensures high scalability, maintainability, and rapid iteration.
 
 Architecture
-Microfrontend Architecture:
+Microfrontends:
 
-home‑app: The primary React application that displays live data such as fixtures, standings, and detailed team analytics.
+home‑app: The main React application that displays live fixtures, standings, and detailed team analytics.
 
-simulation‑app: A React application dedicated to simulation aspects, including match simulation controls and leaderboards.
-
-Both microfrontends are built and deployed independently yet served under the same domain using a reverse proxy (Nginx).
+simulation‑app: A dedicated React application for simulation controls and leaderboards.
 
 Backend Microservice – Teams Service:
 
-Built with Laravel, this service exposes a comprehensive RESTful API for managing teams, generating fixtures, simulating matches, updating standings, and computing championship probabilities.
+Built with Laravel and structured using Repository, Service, and DTO patterns.
 
-Implements modern best practices using Repository Pattern, Service Layers, and Data Transfer Objects (DTOs).
-
-Integrates with MySQL for data storage and Redis for caching.
+Integrates with MySQL for data persistence and Redis for caching.
 
 Reverse Proxy:
 
-An Nginx container routes traffic based on URL paths (e.g., /home-app, /simulation-app, /teams-service), ensuring a seamless integration of the microfrontends and backend service.
+An Nginx container routes requests based on URL paths (e.g., /home-app, /simulation-app, /teams-service).
 
 Features
-Team Management:
+Team Management: Store team statistics (attack, defense, motivation).
 
-Store and manage team statistics such as attack, defense, and motivation.
+Fixture Generation & Match Simulation: Automatically generate fixtures, simulate match outcomes with realistic scoring, and update standings.
 
-Fixture Generation & Match Simulation:
+Championship Probability Calculation: Compute each team’s chance to win the championship based on current and projected results.
 
-Automatically generate fixtures where each team plays every other team.
+Dynamic Leaderboard: Real-time updates of standings and predictions.
 
-Simulate match outcomes using realistic scoring algorithms.
+RESTful API & Swagger Documentation: Comprehensive endpoints with interactive API docs.
 
-Update standings dynamically based on match results.
+Dockerized Deployment: Containerized with Docker Compose.
 
-Championship Probability:
-
-Calculate and display the likelihood of each team becoming the champion based on current and projected results.
-
-Dynamic Leaderboard:
-
-Real-time standings and predictions are integrated into the UI, allowing users to see updated leaderboards immediately after simulations.
-
-RESTful API & Swagger Documentation:
-
-Exposes endpoints for teams, fixtures, simulations, and championship predictions.
-
-Interactive API documentation is generated automatically via Swagger (L5-Swagger).
-
-Dockerized Deployment:
-
-All components (React apps, Laravel backend, MySQL, Redis, and Nginx reverse proxy) are containerized and orchestrated using Docker Compose.
-
-A Makefile streamlines the build and deployment process.
+Makefile Automation: Simplified build and deployment using the make insider command.
 
 Installation & Setup
 Prerequisites
@@ -90,15 +68,15 @@ Clone the Repository:
 
 bash
 Copy
-git clone https://github.com/muhtesemozgur9/LeagueOfInsider.git
+git clone https://github.com/yourusername/league-of-insider.git
 cd league-of-insider
 Configure Environment Variables:
 
-Create a .env file in the project root (or copy from the provided .env.example) and update the necessary values for the backend service (Teams Service) and React apps:
+Create a .env file in the project root (or copy from .env.example) and update the values:
 
 env
 Copy
-# Backend (Laravel)
+# Teams Service (Laravel)
 APP_ENV=local
 APP_DEBUG=1
 APP_KEY=base64:YOUR_APP_KEY_HERE
@@ -116,107 +94,115 @@ REDIS_PORT=6379
 
 # Frontend (React)
 REACT_APP_API_URL=http://dev.insider.com/teams-service/api
-Database Initialization:
+Build and Start Containers:
 
-After the containers are up, run the migrations and seed data in the Teams Service:
+Use the provided Makefile command:
 
 bash
 Copy
-docker exec -it teams-service-app bash
-php artisan migrate --seed
-Additionally, initialize team data by executing the provided SQL inserts.
+make insider
+This command builds and starts all services defined in docker-compose.yml.
 
 Configuration
-The project is fully containerized with Docker Compose. The primary services include:
+The project is fully containerized with Docker Compose. The main services include:
 
-home-app: React frontend served on port 3000
+home-app: React frontend on port 3000
 
-simulation-app: React simulation frontend served on port 3001
+simulation-app: React frontend on port 3001
 
-teams-service: Laravel backend served on port 8080 (mapped from container port 8000)
+teams-service: Laravel backend on port 8080 (mapped from container port 8000)
 
 db: MySQL service on port 3306
 
 redis: Redis service on port 6379
 
-reverse-proxy: Nginx container routing requests based on URL paths (e.g., /home-app, /simulation-app, /teams-service)
+reverse-proxy: Nginx container that routes requests based on URL paths
 
-Running the Project
-To build and run all services, use the Makefile command:
+The reverse proxy (configured via nginx.conf) routes requests as follows:
 
-bash
-Copy
-make insider
-This command builds the Docker images and starts all containers defined in docker-compose.yml.
+/teams-service/ → Teams Service backend
 
-API Endpoints
-Key endpoints include:
+/home-app/ → Home App
 
-Teams:
-GET /api/teams
-Returns a list of teams.
+/simulation-app/ → Simulation App
 
-Fixture Generation:
-POST /api/fixture/generate
-Generates fixtures for all teams.
+/ → Defaults to Home App
 
-Fixture Schedule:
-GET /api/fixtures/schedule
-Returns the full fixture schedule with match results.
+Usage
+After starting the containers, access the services using these URLs:
 
-Latest Fixture Schedule:
-GET /api/fixtures/latest-schedule
-Returns the schedule for the latest played week, or the first week if none have been played.
+Home App: http://dev.insider.com/home-app
 
-Match Simulation:
-POST /api/simulate
-Simulates match results for a specified week (or all weeks).
+Simulation App: http://dev.insider.com/simulation-app
 
-Simulation Reset:
-POST /api/simulate/reset
-Resets all simulation data (match results and standings).
-
-Championship Probabilities:
-GET /api/championship-probabilities
-Returns the championship probability for each team.
-
-Championship Predictions:
-Same as above, used to populate the leaderboard.
+Teams Service API: http://dev.insider.com/teams-service/api
 
 Interactive API documentation is available at:
 
 arduino
 Copy
 http://dev.insider.com/teams-service/api/documentation
+API Endpoints
+Teams
+GET /api/teams
+Returns a list of teams.
+
+Fixture Generation
+POST /api/fixture/generate
+Generates fixtures for all teams.
+
+Fixture Schedule
+GET /api/fixtures/schedule
+Returns the full fixture schedule with match results.
+
+Latest Fixture Schedule
+GET /api/fixtures/latest-schedule
+Returns the schedule for the latest played week, or the first week if none have been played.
+
+Match Simulation
+POST /api/simulate
+Simulates match results for a specified week (or all weeks).
+
+Simulation Reset
+POST /api/simulate/reset
+Resets all simulation data (match results and standings).
+
+Championship Probabilities
+GET /api/championship-probabilities
+Returns each team’s chance of winning the championship.
+
 Makefile Commands
-A Makefile is provided to simplify the build and deployment process. The primary command is:
+A Makefile is provided to streamline the build and deployment process. The main command is:
 
 makefile
 Copy
-insider: all
-Running:
-
-bash
-Copy
 make insider
-will build and start all services defined in docker-compose.yml.
+This command builds the Docker images and starts all services defined in docker-compose.yml.
 
+Database Initialization
+After running make insider, initialize the teams data by executing the following SQL (using your preferred MySQL client):
+
+sql
+Copy
+INSERT INTO `teams` (`attack`, `created_at`, `defense`, `motivation`, `team_id`, `team_name`, `updated_at`) VALUES 
+(95, '2025-03-31 19:18:23', 89, 29, 1, 'Chelsea', '2025-03-31 19:18:23'),
+(96, '2025-03-31 19:18:44', 49, 65, 2, 'Manchester City', '2025-03-31 19:18:44'),
+(84, '2025-03-31 19:19:04', 45, 100, 3, 'Beşiktaş', '2025-03-31 19:19:36'),
+(86, '2025-03-31 19:19:22', 43, 12, 4, 'Barcelona', '2025-03-31 19:19:22');
 Development & Testing
-For backend development:
-
+Backend
 Running Tests:
 
 bash
 Copy
 docker exec -it teams-service-app bash
 php artisan test
-Coding Standards:
-Adhere to PSR standards. Use tools like PHP CS Fixer and PHPStan to maintain high code quality.
+Code Standards:
+Follow PSR standards and use tools like PHP CS Fixer and PHPStan for code quality.
 
-For frontend development:
-
+Frontend
 Local Development:
-React apps are built with Create React App. Use npm start for local development if not using Docker.
+React apps are built with Create React App. Use npm start for local development if needed.
 
 Testing:
-Use Jest and React Testing Library to write unit tests for your components and hooks.
+Use Jest and React Testing Library for unit and integration tests.
