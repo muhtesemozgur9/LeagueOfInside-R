@@ -1,4 +1,3 @@
-// src/components/SimulationLayout/SimulationLayout.jsx
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./SimulationLayout.module.css";

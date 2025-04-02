@@ -1,4 +1,3 @@
-// src/components/ChampionshipPredictions/ChampionshipPredictions.jsx
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./ChampionshipPredictions.module.css";

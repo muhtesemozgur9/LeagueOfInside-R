@@ -1,15 +1,13 @@
-/* src/components/SimulationButtons/SimulationButtons.module.css */
-
 .container {
     display: flex;
     gap: 20px;
     margin-top: 20px;
-    justify-content: center; /* Ortalamak için */
+    justify-content: center; 
   }
   
   .playAll {
     padding: 10px 16px;
-    background-color: #2b6cb0; /* Mavi */
+    background-color: #2b6cb0;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -18,7 +16,7 @@
   
   .playNext {
     padding: 10px 16px;
-    background-color: #38b2ac; /* Turkuaz */
+    background-color: #38b2ac;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -27,7 +25,7 @@
   
   .reset {
     padding: 10px 16px;
-    background-color: #e53e3e; /* Kırmızı */
+    background-color: #e53e3e;
     color: #fff;
     border: none;
     border-radius: 4px;

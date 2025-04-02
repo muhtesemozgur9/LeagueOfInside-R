@@ -9,6 +9,231 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/championship-probabilities": {
+            "get": {
+                "tags": [
+                    "Championship"
+                ],
+                "summary": "Get championship probabilities for each team",
+                "description": "Get championship probabilities for all teams.",
+                "operationId": "31ed1118f2946db5f06b99243bbf110d",
+                "responses": {
+                    "200": {
+                        "description": "Championship probabilities",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "team_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "team_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "championship_probability": {
+                                                        "type": "number",
+                                                        "format": "float"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/fixtures/generate": {
+            "post": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Generate full fixture schedule",
+                "description": "Generate all fixtures from current teams.",
+                "operationId": "01f1eaf53fb88bcfe3d1f4f2dc3d3ff8",
+                "responses": {
+                    "200": {
+                        "description": "Fixtures successfully generated"
+                    },
+                    "500": {
+                        "description": "Error generating fixtures"
+                    }
+                }
+            }
+        },
+        "/api/fixtures/schedule": {
+            "get": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Get fixture schedule",
+                "description": "Get fixture schedule with team names and match results (if available).",
+                "operationId": "232e8a3ab2c9095e3e19c2783e2835dc",
+                "responses": {
+                    "200": {
+                        "description": "Fixture schedule data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/fixtures/schedule/latest": {
+            "get": {
+                "tags": [
+                    "Fixtures"
+                ],
+                "summary": "Get latest played week schedule, or first week if none played",
+                "description": "Get the latest played week schedule.\n\nIf no matches have been played, returns the first week schedule.",
+                "operationId": "c843003ae9f2944f2bad4e877a15cc5f",
+                "responses": {
+                    "200": {
+                        "description": "Latest played week schedule",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/simulate": {
+            "post": {
+                "tags": [
+                    "Simulation"
+                ],
+                "summary": "Simulate match results",
+                "description": "Simulate match results for a given week or all weeks.",
+                "operationId": "f56d546c105b60e0284c8e6f6fade4e2",
+                "parameters": [
+                    {
+                        "name": "week",
+                        "in": "query",
+                        "description": "Week number to simulate. If not provided, all weeks are simulated.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Simulation completed successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Match simulation completed successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Simulation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Simulation error: [error details]"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/simulate/reset": {
+            "post": {
+                "tags": [
+                    "Simulation"
+                ],
+                "summary": "Reset simulation data",
+                "description": "Reset simulation data (match results and standings).",
+                "operationId": "657ea9d2622844d284aaee5abc710474",
+                "responses": {
+                    "200": {
+                        "description": "Simulation reset successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Simulation reset successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Simulation reset error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Simulation reset error: [error details]"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/standings": {
+            "get": {
+                "tags": [
+                    "Standings"
+                ],
+                "summary": "Get all team standings",
+                "description": "Tüm takım sıralamasını döndürür.",
+                "operationId": "08f50c8106a54d96119a9f5292362450",
+                "responses": {
+                    "200": {
+                        "description": "Standings list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/teams": {
             "get": {
                 "tags": [
@@ -59,6 +284,22 @@
         {
             "name": "Teams",
             "description": "Takım işlemleri"
+        },
+        {
+            "name": "Championship",
+            "description": "Championship"
+        },
+        {
+            "name": "Fixtures",
+            "description": "Fixtures"
+        },
+        {
+            "name": "Simulation",
+            "description": "Simulation"
+        },
+        {
+            "name": "Standings",
+            "description": "Standings"
         }
     ]
 }

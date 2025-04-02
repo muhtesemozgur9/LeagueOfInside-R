@@ -1,13 +1,10 @@
-// src/components/WeekCard/WeekCard.jsx
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./WeekCard.module.css";
 
 function WeekCard({ weekNumber, matches, homeAppFixturesUrl }) {
   const handleWeekClick = () => {
-    // Mikro frontend senaryosunda, harici bir link:
     window.location.href = `${homeAppFixturesUrl}?week=${weekNumber}`;
-    // Örneğin: http://home-app-domain/fixtures?week=1
   };
 
   return (
@@ -18,9 +15,9 @@ function WeekCard({ weekNumber, matches, homeAppFixturesUrl }) {
       <div className={styles.matches}>
         {matches.map((match, index) => (
           <div key={index} className={styles.matchRow}>
-            <div className={styles.teamLeft}>{match.home}</div>
-            <div className={styles.hyphen}>-</div>
-            <div className={styles.teamRight}>{match.away}</div>
+            <div className={styles.teamLeft}>{match.home_team}</div>
+            <div className={styles.hyphen}>{match.home_goals ?? ""}-{match.away_goals ?? ""}</div>
+            <div className={styles.teamRight}>{match.away_team}</div>
           </div>
         ))}
       </div>
@@ -36,7 +33,7 @@ WeekCard.propTypes = {
       away: PropTypes.string.isRequired,
     })
   ).isRequired,
-  homeAppFixturesUrl: PropTypes.string, // Örnek: "http://localhost:3000/fixtures"
+  homeAppFixturesUrl: PropTypes.string, 
 };
 
 WeekCard.defaultProps = {

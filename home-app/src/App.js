@@ -7,9 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Ana sayfa */}
         <Route path="/" element={<Home />} />
-        {/* Fikstür sayfası */}
         <Route path="/fixtures" element={<FixturesPage />} />
       </Routes>
     </BrowserRouter>

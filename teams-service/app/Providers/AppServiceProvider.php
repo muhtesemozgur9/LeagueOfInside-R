@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\TeamRepositoryInterface;
-use App\Repositories\EloquentTeamRepository;
+use App\Repositories\{TeamRepositoryInterface,FixtureRepositoryInterface,StandingRepositoryInterface};
+use App\Repositories\{EloquentTeamRepository,EloquentFixtureRepository,EloquentStandingRepository};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +13,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             TeamRepositoryInterface::class,
             EloquentTeamRepository::class
+        );
+
+        $this->app->bind(
+            FixtureRepositoryInterface::class,
+            EloquentFixtureRepository::class
+        );
+
+        $this->app->bind(
+            StandingRepositoryInterface::class,
+            EloquentStandingRepository::class
         );
         
         $this->app->singleton(\App\Services\TeamService::class, function ($app) {

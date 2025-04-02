@@ -1,5 +1,3 @@
-// src/components/common/Button.jsx
-
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./Button.module.css";
@@ -18,7 +16,7 @@ const Button = ({ children, onClick, type = "button", disabled = false }) => {
 };
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired, // Butonun iç metni veya icon vs.
+  children: PropTypes.node.isRequired, 
   onClick: PropTypes.func,
   type: PropTypes.string,
   disabled: PropTypes.bool,

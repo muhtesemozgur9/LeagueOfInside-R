@@ -23,4 +23,9 @@ class Team extends Model
         'defense',
         'motivation'
     ];
+
+    public function standing()
+    {
+        return $this->hasOne(Standing::class, 'team_id');
+    }
 }

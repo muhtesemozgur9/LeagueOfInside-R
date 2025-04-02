@@ -1,7 +1,5 @@
-/* src/components/TeamsTable/TeamsTable.module.css */
-
 .container {
-    text-align: center; /* Ortalamak için */
+    text-align: center; 
     margin-bottom: 20px;
     flex:2;
   }
